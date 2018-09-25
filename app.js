@@ -8,6 +8,7 @@ var Fingerprint = require('express-fingerprint')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var mapRouter = require('./routes/map');
 var spotRouter = require('./routes/spot');
 var chatRouter = require('./routes/chat');
 var searchRouter = require('./routes/search');
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/map', mapRouter);
 app.use('/spot', spotRouter);
 app.use('/chat', chatRouter);
 app.use('/search', searchRouter);
