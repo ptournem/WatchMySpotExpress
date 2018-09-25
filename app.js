@@ -10,6 +10,7 @@ var spotRouter = require('./routes/spot');
 var chatRouter = require('./routes/chat');
 var searchRouter = require('./routes/search');
 var loginRouter = require('./routes/login');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/spot', spotRouter);
 app.use('/chat', chatRouter);
 app.use('/search', searchRouter);
 app.use('/login', loginRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
