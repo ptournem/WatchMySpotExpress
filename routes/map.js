@@ -12,6 +12,13 @@ fs.readFile(filePath, function (err, data) {
   }
 
   locations = JSON.parse(data).spots;
+
+  locations.forEach(function (location, index) {
+    // Si la donnée lue n'est pas un nombre, on la retire du tableau
+    if (typeof(location.longitude) !== 'number' || typeof(location.latitude) !== 'number') {
+      locations.splice(index, 1);
+    }
+  });
 });
 
 /* GET map page. */
