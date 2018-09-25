@@ -1,3 +1,18 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout-header %>
+  </head>
+  <body>
+    <%- include layout-menu %>
+
+    <div class="row center">
+      <h5 class="header col s12 light">Oups... On a un p'tit souci!</h5>
+      <pre><%= message %></pre>
+      <pre><%= error.status %></pre>
+      <pre><%= error.stack %></pre>
+    </div>
+
+    <%- include layout-footer %>
+  </body>
+</html>
