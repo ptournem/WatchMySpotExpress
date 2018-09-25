@@ -1,9 +1,18 @@
 var express = require('express');
+var fs = require('fs');
 var router = express.Router();
 
+const filePath = './public/data/spots.json';
 var locations = [];
-locations.push({'latitude': '51.509', 'longitude': '-0.08'});
-locations.push({'latitude': '50.509', 'longitude': '10.08'});
+
+fs.readFile(filePath, function (err, data) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  locations = JSON.parse(data).spots;
+});
 
 /* GET map page. */
 router.get('/', function(req, res, next) {
