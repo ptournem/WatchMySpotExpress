@@ -1,9 +1,16 @@
 const UserRepo = require('../repositories/UserRepository');
 
 exports.showLogin = function(req,res){
-
-
-
+  viewTitle = "Connexion";
+  res.render('login', {
+      title: viewTitle,
+      home: 'Accueil',
+      search: 'Recherche',
+      login: 'Connexion',
+      spot: 'Mes spots',
+      application: 'Une application pour les surfeurs à la recherche de nouveaux spot de surf!',
+      tchat: 'Chat en ligne'
+    });
 };
 
 exports.attemptLogin = function(req,res){
