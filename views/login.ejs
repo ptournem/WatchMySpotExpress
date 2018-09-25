@@ -9,13 +9,13 @@
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
         <div class="row">
-          <form class="col s12">
+          <form class="col s12" action='auth/login' method="post">
             <div class="row">
               <div class="input-field col s6">
-                <input placeholder="Pseudo" id="pseudo" type="text" class="validate">
+                <input placeholder="Pseudo" id="pseudo" name="pseudo" type="text" class="validate">
               </div>
               <div class="input-field col s6">
-                <input placeholder="Mot de passe" id="password" type="password" class="validate">
+                <input placeholder="Mot de passe" id="password" name="password" type="password" class="validate">
               </div>
               <input type="submit" class="btn-large waves-effect waves-light orange">
             </div>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    
+
   <%- include layout-footer %>
   </body>
 </html>
