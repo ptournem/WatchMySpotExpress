@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%- include layout-header %>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%- include layout-menu %>
+
+    <div class="row center">
+      <h5 class="header col s12 light"><%= application %></h5>
+    </div>
+
+    <%- include layout-footer %>
   </body>
 </html>
