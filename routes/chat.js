@@ -15,14 +15,12 @@ function returnRender(){
     };
 }
 
-/* GET home page. */
+
+// Route pour la vue spot
 router.get('/', function(req, res, next) {
-  viewTitle = "Watch My Spot";
-  res.render('index', returnRender());
+  viewTitle = "Chat en ligne";
+  res.render('chat', returnRender());
 });
-
-
-
 
 
 module.exports = router;
