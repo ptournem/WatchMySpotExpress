@@ -22,6 +22,8 @@ exports.attemptLogin = function(req,res){
     return;
   }
 
+  const {pseudo,password} = req.body;
+
   console.log("attemptLogin has params");
   UserRepo.attemptLogin(pseudo, password).then(function(success){
     console.log('success ? ');
