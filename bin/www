@@ -91,7 +91,10 @@ function onListening() {
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-    console.log('youpi');
+    var clientIP = socket.client.conn.remoteAddress;
+    io.emit('chat message',clientIP + ":"+ msg);
+    console.log('socket.client.conn.remoteAddress', socket.client.conn.remoteAddress);
+    console.log('socket.client.conn.remoteAddress', clientIP);
+
   });
 });
