@@ -30,3 +30,8 @@ exports.attemptLogin = function(req,res){
     res.redirect('/auth');
   });
 }
+
+exports.logout = function(req,res){
+  req.session.destroy((err)=>{console.log(err)});
+  res.redirect('/');
+}
