@@ -7,5 +7,7 @@ const RequireNotLoginMiddleware = require('../utils/RequireNotLoginMiddleware');
 router.use(RequireNotLoginMiddleware);
 router.route('/').get(AuthController.showLogin);
 router.route('/login').post(AuthController.attemptLogin);
+router.route('/signup').get(AuthController.signup);
+router.route('/connect_jwt').get(AuthController.connect_jwt);
 
 module.exports = router;
