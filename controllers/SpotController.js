@@ -28,3 +28,9 @@ exports.getSpot = function(req, res){
     disconnectMongo.getCloseConnectionMongo();
   });
 }
+
+//Fonction pour la vue des spots favori d'un utilisateur
+exports.mySpot = function(req, res){
+    viewTitle = "Mes Spots favoris";
+    res.render('spot', returnRender(viewTitle));
+}
