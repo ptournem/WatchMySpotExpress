@@ -9,7 +9,6 @@ var usersRouter = require('./routes/users');
 var spotRouter = require('./routes/spot');
 var chatRouter = require('./routes/chat');
 var searchRouter = require('./routes/search');
-var loginRouter = require('./routes/login');
 var authRouter = require('./routes/auth');
 
 var app = express();
