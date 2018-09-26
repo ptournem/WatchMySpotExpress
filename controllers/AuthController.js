@@ -1,4 +1,5 @@
 const UserRepo = require('../repositories/UserRepository');
+const jwt = require('jsonwebtoken');
 
 exports.showLogin = function(req,res){
   viewTitle = "Connexion";
@@ -34,4 +35,23 @@ exports.attemptLogin = function(req,res){
 exports.logout = function(req,res){
   req.session.destroy((err)=>{console.log(err)});
   res.redirect('/');
+}
+
+exports.signup = (req,res) => {
+const JWTToken = jwt.sign({
+    user : req.fingerprint.hash,
+    user_id : 1
+  },
+  'secret');
+
+  res.status(200).json({
+    success: 'Welcome to the JWT Auth',
+    token: JWTToken
+  });
+}
+
+exports.connect_jwt = (req,res) =>  {
+  const verified = jwt.verify(req.query.token,'secret');
+  console.log(verified);
+  res.status(200).json(verified);
 }

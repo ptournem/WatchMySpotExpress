@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+var Fingerprint = require('express-fingerprint')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -29,6 +30,15 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+
+// middleware pour avoir une empreinte du client
+app.use(Fingerprint({
+    parameters:[
+        Fingerprint.useragent,
+        Fingerprint.acceptHeaders,
+    ]
+}))
 
 // on ajoute la session disponible dans ejs
 app.use((req,res,next)=>{
