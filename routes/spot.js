@@ -1,5 +1,5 @@
 var express = require('express');
-var MongoClient = require("mongodb").MongoClient;
+var mongoose = require('mongoose');
 var router = express.Router();
 
 var viewTitle;
@@ -27,23 +27,24 @@ router.get('/', function(req, res, next) {
 
 // Route pour la vue d'un spot en particulier (avec un identifiant en param)
 router.get('/:id', function(req, res, next) {
-  //Connexion à MongoDB
-  MongoClient.connect("mongodb://localhost:27017/watchmyspot", function(error, client) {
-    if (error) throw error;
-    var db = client.db('watchmyspot');
+  //Connexion à MongoDB via Mongoose
+  mongoose.connect('mongodb://localhost:27017/watchmyspot');
+  var connection = mongoose.connection;
 
-    console.log("Connecté à la base de données 'watchmyspot'");
+  connection.on('error', console.error.bind(console, 'connection error:'));
+  connection.once('open', function () {
 
-     db.collection("spots").find().toArray(function (error, results) {
-        if (error) throw error;
-        console.log(results);
-        console.log("-----");
-        results.forEach(function(i, obj) {
-            console.log(obj);
-        });
-    });
+  connection.db.collection("spots", function(err, collection){
+      collection.find({}).toArray(function(err, data){
+          console.log(data); // it will print your collection data
+      })
   });
+});
 
+  //Fermeture de la connexion à MongoDB
+  mongoose.connection.close();
+
+  // rendu de la vue
   viewTitle = "Spot : ";
   res.render('spot', returnRender());
 });
