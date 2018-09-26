@@ -17,29 +17,22 @@
       <div class="section">
         <!--   Icon Section   -->
         <div class="row">
+            <div class="row center">
+              <h5 class="header col s12 light">Nos 10 meilleurs spots</h5>
+            </div>
           <div class="col s12 m12">
             <div class="icon-block">
               <div id="mapId" style="height: 500px;"></div>
             </div>
           </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">Stat spot 1</h2>
-              <h5 class="center">Statistiques #1 spot</h5>
+          <% locations.forEach(function (location) { %>
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center light-blue-text"><%= location.nom %></h2>
+                <h5 class="center"><%= location.note %> / 10</h5>
+              </div>
             </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">Stat spot 2</h2>
-              <h5 class="center">Statistiques #2 spot</h5>
-            </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">Stat spot 3</h2>
-              <h5 class="center">Statistiques #3 spot</h5>
-            </div>
-          </div>
+          <% }); %>
         </div>
       </div>
       <br><br>
