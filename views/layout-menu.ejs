@@ -6,7 +6,11 @@
           <li><a href="/chat">Chat en ligne</a></li>
           <li><a href="/spot"><%= spot %></a></li>
           <li><a href="/search"><%= search %></a></li>
+          <% if(session.user && session.user.connected){ %>
+            <li><a href="/logout/">Deconnexion</a></li>
+          <% } else { %>
           <li><a href="/auth/"><%= login %></a></li>
+          <% } %>
         </ul>
       </div>
     </nav>
