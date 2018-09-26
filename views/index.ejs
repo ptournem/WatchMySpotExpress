@@ -56,7 +56,8 @@
       }).addTo(myMap);
 
       <% locations.forEach(function (location) { %>
-        L.marker([<%= location.latitude %>, <%= location.longitude %>]).addTo(myMap);
+        L.marker([<%= location.latitude %>, <%= location.longitude %>]).addTo(myMap)
+        .bindPopup('Note : ' + <%= location.note %> + '/10');
       <% }); %>
     </script>
   </body>
