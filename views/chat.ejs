@@ -5,7 +5,36 @@
   </head>
   <body>
       <%- include layout-menu %>
+      <ul id="messages">
+      </ul>
 
+      <form action="">
+        <input id="m" autocomplete="off" /><button type="submit">Send</button>
+      </form>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+      <script>
+      var ipC;
+      $(function () {
+        var socket = io();
+       $('form').submit(function(){
+         socket.emit('ip','');
+         socket.emit('chat message', $('#m').val());
+
+         $('#m').val("");
+         return false;
+       });
+       socket.on('ip', function(ip){
+        ipC = ip;
+       });
+       socket.on('chat message', function(msg){
+         
+         $('#messages').append($('<li><b>'+ipC+': </b>'+msg+'</li>'));
+         window.scrollTo(0, document.body.scrollHeight);
+       });
+
+     });
+   </script>
       <%- include layout-footer %>
   </body>
 </html>
