@@ -3,22 +3,6 @@ const disconnectMongo = require('../utils/disconnectMongo');
 const wms_render = require('../utils/render');
 
 var viewTitle;
-//Fonction de retour d'attribut pour la vue
-function returnRender(viewTitle, spots){
-  var obj =  {
-      title: viewTitle,
-      home: 'Accueil',
-      search: 'Recherche',
-      login: 'Connexion',
-      spot: 'Mes spots',
-      application: 'Une application pour les surfeurs à la recherche de nouveaux spot de surf!',
-      tchat: 'Chat en ligne',
-      spots: spots
-    };
-
-    return obj;
-}
-
 // Fonction qui retourne tous les spots
 exports.getTenBestSpots = function(req, res) {
   const spots = [];
@@ -31,7 +15,8 @@ exports.getTenBestSpots = function(req, res) {
     });
 
     console.log(spots);
-    res.render('index', returnRender(viewTitle, spots));
+    // rendu de la vue
+    res.render('index', wms_render.returnRender(viewTitle, spots));
     //Fermeture de la connexion à MongoDB
     disconnectMongo.getCloseConnectionMongo();
   });
@@ -46,7 +31,7 @@ exports.getSpot = function(req, res){
       viewTitle = "Spot : "+spot.get('label');
     }
     // rendu de la vue
-    res.render('spot', wms_render.returnRender(viewTitle));
+    res.render('spot', wms_render.returnRender(viewTitle, spot.toJSON()));
 
     //Fermeture de la connexion à MongoDB
     disconnectMongo.getCloseConnectionMongo();
