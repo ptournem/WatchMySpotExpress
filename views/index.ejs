@@ -21,11 +21,11 @@
               <h5 class="header col s12 light">Nos 10 meilleurs spots</h5>
             </div>
           <%- include layout-map %>
-          <% locations.forEach(function (location) { %>
+          <% spots.forEach(function (spot) { %>
             <div class="col s12 m4">
               <div class="icon-block">
-                <h2 class="center light-blue-text"><%= location.label %></h2>
-                <h5 class="center"><%= location.note %> / 10</h5>
+                <h2 class="center light-blue-text"><%= spot.label %></h2>
+                <h5 class="center"><%= spot.note %> / 10</h5>
               </div>
             </div>
           <% }); %>

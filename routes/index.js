@@ -1,4 +1,5 @@
 var express = require('express');
+const spotController = require('../controllers/spotController');
 var router = express.Router();
 var wms_rendre = require('../utils/render');
 
