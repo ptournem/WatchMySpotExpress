@@ -6,9 +6,13 @@ var viewTitle;
 
 //Fonction qui retourne les informations d'un spot
 exports.getSpot = function(req, res){
-  spotRepository.getSpot(req.params.id).then(function(spot){
+  spotRepository.getSpot(req.params.id).then(function(spot, error){
+    if(!spot){ //Spot introuvable
+      viewTitle = 'Spot introuvable';
+    }else{ //Spot trouvé
+      viewTitle = "Spot : "+spot.get('label');
+    }
     // rendu de la vue
-    viewTitle = "Spot : "+spot.get('label');
     res.render('spot', wms_render.returnRender(viewTitle));
 
     //Fermeture de la connexion à MongoDB
