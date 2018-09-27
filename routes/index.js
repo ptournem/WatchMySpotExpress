@@ -1,26 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
-var viewTitle;
-
-function returnRender(){
-  return {
-      title: viewTitle,
-      home: 'Accueil',
-      search: 'Recherche',
-      login: 'Connexion',
-      spot: 'Mes spots',
-      application: 'Une application pour les surfeurs à la recherche de nouveaux spot de surf!',
-      tchat: 'Chat en ligne'
-    };
-}
+var wms_rendre = require('../utils/render');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  viewTitle = "Watch My Spot";
-  res.render('index', returnRender());
+  res.render('index', wms_rendre.returnRender("Watch My Spot"));
 });
-
 
 
 
