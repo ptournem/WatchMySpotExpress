@@ -1,0 +1,14 @@
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+crossorigin=""></script>
+<script type="text/javascript">
+    var myMap = L.map('mapId').setView([46.495, 2.207], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(myMap);
+
+    <% spots.forEach(function (spot) { %>
+      L.marker([<%= spot.latitude %>, <%= spot.longitude %>]).addTo(myMap)
+      .bindPopup('Note : ' + <%= spot.note %> + '/10');
+    <% }); %>
+</script>

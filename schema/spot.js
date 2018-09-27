@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
-const schema_spot = mongoose.Schema({
-  label : String,
-  longitude : String,
-  latitude : String
+const schema_spot = new mongoose.Schema({
+  _id: mongoose.SchemaTypes.ObjectId,
+  latitude : Number,
+  longitude : Number,
+  note: Number,
+  label : String
 });
 
-
-module.schema_spot;
+module.export = schema_spot;

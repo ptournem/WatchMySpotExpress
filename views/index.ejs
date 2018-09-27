@@ -2,6 +2,10 @@
 <html>
   <head>
     <%- include layout-header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
   </head>
   <body>
     <%- include layout-menu %>
@@ -13,34 +17,24 @@
       <div class="section">
         <!--   Icon Section   -->
         <div class="row">
-          <div class="col s12 m12">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">La carte des spots</h2>
+            <div class="row center">
+              <h5 class="header col s12 light">Nos 10 meilleurs spots</h5>
             </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">Stat spot 1</h2>
-              <h5 class="center">Statistiques #1 spot</h5>
+          <%- include layout-map %>
+          <% spots.forEach(function (spot) { %>
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <a href="/spot/<%= spot._id %>"><h2 class="center light-blue-text"><%= spot.label %></h2></a>
+                <h5 class="center"><%= spot.note %> / 10</h5>
+              </div>
             </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">Stat spot 2</h2>
-              <h5 class="center">Statistiques #2 spot</h5>
-            </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">Stat spot 3</h2>
-              <h5 class="center">Statistiques #3 spot</h5>
-            </div>
-          </div>
+          <% }); %>
         </div>
       </div>
       <br><br>
     </div>
 
     <%- include layout-footer %>
+    <%- include layout-map-script %>
   </body>
 </html>

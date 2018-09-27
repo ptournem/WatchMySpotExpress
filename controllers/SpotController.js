@@ -3,6 +3,24 @@ const disconnectMongo = require('../utils/disconnectMongo');
 const wms_render = require('../utils/render');
 
 var viewTitle;
+// Fonction qui retourne tous les spots
+exports.getTenBestSpots = function(req, res) {
+  const spots = [];
+  spotRepository.getTenBestSpots().then(function(spotsData){
+    viewTitle = "Watch My Spot";
+    console.log(spotsData);
+    spotsData.map(o=>o.toJSON()).forEach(function (spot, index) {
+      const {_id, latitude, longitude, note, label} = spot;
+      spots.push({_id, latitude, longitude, note, label});
+    });
+
+    console.log(spots);
+    // rendu de la vue
+    res.render('index', wms_render.returnRender(viewTitle, spots));
+    //Fermeture de la connexion à MongoDB
+    disconnectMongo.getCloseConnectionMongo();
+  });
+}
 
 //Fonction qui retourne les informations d'un spot
 exports.getSpot = function(req, res){
@@ -13,7 +31,7 @@ exports.getSpot = function(req, res){
       viewTitle = "Spot : "+spot.get('label');
     }
     // rendu de la vue
-    res.render('spot', wms_render.returnRender(viewTitle));
+    res.render('spot', wms_render.returnRender(viewTitle, spot.toJSON()));
 
     //Fermeture de la connexion à MongoDB
     disconnectMongo.getCloseConnectionMongo();
