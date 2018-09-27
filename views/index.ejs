@@ -24,7 +24,7 @@
           <% spots.forEach(function (spot) { %>
             <div class="col s12 m4">
               <div class="icon-block">
-                <h2 class="center light-blue-text"><%= spot.label %></h2>
+                <a href="/spot/<%= spot._id %>"><h2 class="center light-blue-text"><%= spot.label %></h2></a>
                 <h5 class="center"><%= spot.note %> / 10</h5>
               </div>
             </div>

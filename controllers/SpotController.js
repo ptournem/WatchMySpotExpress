@@ -24,9 +24,10 @@ exports.getTenBestSpots = function(req, res) {
   const spots = [];
   spotRepository.getTenBestSpots().then(function(spotsData){
     viewTitle = "Watch My Spot";
-    spotsData.map(o=>o.toObject()).forEach(function (spot, index) {
-      const {latitude, longitude, note, label} = spot;
-      spots.push({latitude, longitude, note, label});
+    console.log(spotsData);
+    spotsData.map(o=>o.toJSON()).forEach(function (spot, index) {
+      const {_id, latitude, longitude, note, label} = spot;
+      spots.push({_id, latitude, longitude, note, label});
     });
 
     console.log(spots);
