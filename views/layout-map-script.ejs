@@ -7,8 +7,14 @@ crossorigin=""></script>
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(myMap);
 
+    var spots = [];
     <% spots.forEach(function (spot) { %>
-      L.marker([<%= spot.latitude %>, <%= spot.longitude %>]).addTo(myMap)
+      var coord = [<%= spot.latitude %>, <%= spot.longitude %>];
+      L.marker(coord).addTo(myMap)
       .bindPopup('Note : ' + <%= spot.note %> + '/10');
+      spots.push(coord);
     <% }); %>
+
+    // on fit la carte autour des meilleures spots 
+    myMap.fitBounds(spots);
 </script>
