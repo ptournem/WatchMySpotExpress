@@ -19,8 +19,10 @@
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(myMap);
 
+        <% if(typeof spots !== "undefined" ) { %>
         L.marker([<%= spots.latitude %>, <%= spots.longitude %>]).addTo(myMap)
         .bindPopup('Note : ' + <%= spots.note %> + '/10');
+        <% } %>
       </script>
   </body>
 </html>

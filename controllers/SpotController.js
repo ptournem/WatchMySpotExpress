@@ -31,7 +31,7 @@ exports.getSpot = function(req, res){
       viewTitle = "Spot : "+spot.get('label');
     }
     // rendu de la vue
-    res.render('spot', wms_render.returnRender(viewTitle, spot.toJSON()));
+    res.render('spot', wms_render.returnRender(viewTitle, spot ? spot.toJSON() : undefined));
 
     //Fermeture de la connexion à MongoDB
     disconnectMongo.getCloseConnectionMongo();
