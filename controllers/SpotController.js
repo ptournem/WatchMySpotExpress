@@ -3,7 +3,6 @@ const disconnectMongo = require('../utils/disconnectMongo');
 const wms_render = require('../utils/render');
 
 var viewTitle;
-var spots = [];
 //Fonction de retour d'attribut pour la vue
 function returnRender(viewTitle, spots){
   var obj =  {
@@ -22,17 +21,15 @@ function returnRender(viewTitle, spots){
 
 // Fonction qui retourne tous les spots
 exports.getTenBestSpots = function(req, res) {
+  const spots = [];
   spotRepository.getTenBestSpots().then(function(spotsData){
     viewTitle = "Watch My Spot";
-    spotsData.forEach(function (spot, index) {
-      console.log(spot);
-      // Si la donnée lue n'est pas un nombre, on la retire du tableau
-      if (typeof(spot.get('longitude') !== 'number' || typeof(spot.get('latitude') !== 'number'))) {
-        console.log('location is not a number : ' + typeof(spot.get('longitude')) + ' ' + spot.get('latitude') + '/' + spot.get('longitude'));
-        return;
-      }
-      spots.push({latitude: spot.get('latitude'), longitude: spot.get('longitude'), note: spot.get('note'), label: spot.get('label')});
+    spotsData.map(o=>o.toObject()).forEach(function (spot, index) {
+      const {latitude, longitude, note, label} = spot;
+      spots.push({latitude, longitude, note, label});
     });
+
+    console.log(spots);
     res.render('index', returnRender(viewTitle, spots));
     //Fermeture de la connexion à MongoDB
     disconnectMongo.getCloseConnectionMongo();
